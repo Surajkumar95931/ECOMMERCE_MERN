@@ -1,21 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Navbar.css";
 
 import logo from "../Assests/logo.png";
 import cart_icon from "../Assests/cart_icon.png";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
+// import nav_dropdown from '../Assest
 
 const Navbar = () => {
   const [menu, setMenu] = useState("shop");
 const {getTotalCartItems}=useContext(ShopContext);
+const menuRef=useRef();
   return (
     <div className="navbar">
       <div className="nav-logo">
         <img src={logo} alt="" />
         <p>SHOPPER</p>
       </div>
-      <ul className="nav-menu">
+      <ul ref={menuRef}className="nav-menu">
         <li onClick={()=>{setMenu("shop")}}><Link style={{textDecoration:'none'}} to='/'>Shop</Link>{menu==="shop"?<hr/>:<></>}</li>
         <li onClick={()=>{setMenu("mens")}}><Link style={{textDecoration:'none'}} to='/mens'>Men</Link> {menu==="mens"?<hr/>:<></>}</li>
         <li onClick={()=>{setMenu("women")}}><Link style={{textDecoration:'none'}} to='/womens'>Women</Link>{menu==="women"?<hr/>:<></>}</li>
